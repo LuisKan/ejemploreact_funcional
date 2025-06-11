@@ -1,69 +1,66 @@
-/*import React from "react";
-import "./Restaurante"; //importamos el css
-
-class Restaurante extends React.Component {
-
-    constructor(props){ //constructor se ejeecuta una sola vez, al crear el componente
-        //llama al constructor de la clase padre, en este caso React.Component
-        super(props);//llamamos al constructor de la clase padre
-        this.state = {
-            likes: 0 //inicializamos el estado del componente, es un objeto
-        }
-        //this.handlerLike = this.handlerLike.bind(this); //bind es una funcion que se usa para enlazar el contexto de la funcion con el contexto de la clase, en este caso el contexto de la clase Restaurante
-        //el this de esta funcion es el this de la clase Restaurante, no el this de la funcion handlerLike
-    }
-
-    /*handlerLike() {
-        this.setState({ likes: this.state.likes + 1 }) //actualizamos el estado del componente, setState es una funcion que actualiza el estado del componente
-     }*/
-
-   /* handlerLike = () => { //es una funcion de flecha, el this de la funcion es el this de la clase Restaurante
-        this.setState({ likes: this.state.likes + 1 }) //actualizamos el estado del componente, setState es una funcion que actualiza el estado del componente
-    }
-
-    render() { // el render es una funcion que se ejecuta cada vez que cambie alguno de estos elementos, las props o el estado del componente
-
-        const { nombre, direccion, tipo, imagen } = this.props ; //Desestructuramos las propiedades del componente Restaurante, es un objeto
-
-        return (//todo lo que esta dentro de return es jsx y todo lo que esta afuera es js/
-            <div>
-                <h1>{nombre}</h1>
-                <h3>{direccion}</h3>
-                <h4>{tipo}</h4>
-                <img src={imagen} alt={nombre}/>
-                <h4> Likes: {this.state.likes}</h4>
-                <button onClick={this.handlerLike}>LIKE</button> 
-                
-            </div>
-        );
-    }
-
-
-}
-
-export default Restaurante;  //disponible para otros archivos
-*/
-
+// Importa React y el hook useState desde la librería react
 import React, {useState} from "react";
+// Importa el archivo de estilos CSS para el componente Restaurante
 import "./Restaurante.css"; // importamos el css
+import ListaRestaurantes from "./ListaRestaurantes"; // Importa el componente ListaRestaurantes
 
+
+// Define el componente funcional Restaurante que recibe props como argumento
 function Restaurante(props){
 
-    const { nombre, direccion, tipo, imagen } = props; //Desestructuramos las propiedades del componente Restaurante, es un objeto
-    const [likes, setLikes] = useState(0); //inicializamos el estado del componente, es un objeto
-    const handlerLike = () => {setLikes(likes + 1);} //actualizamos el estado del componente, setState es una funcion que actualiza el estado del componente;
+    // Desestructura las propiedades recibidas por el componente, incluyendo los handlers para likes y dislikes totales
+    const { nombre, direccion, tipo, imagen, handlerLikeTotales, handlerDislikeTotales} = props; 
+    
+    // Inicializa el estado local preferencias con likes y dislikes en 0 usando useState
+    const [preferencias, setPreferencias] = useState({likes: 0, dislikes: 0}); 
+    // Extrae los valores de likes y dislikes del estado preferencias
+    const likes = preferencias.likes;
+    const dislikes = preferencias.dislikes;
 
-    return (//todo lo que esta dentro de return es jsx y todo lo que esta afuera es js/
+    // Define la función handlerLike para manejar el evento de dar like
+    const handlerLike = () => {
+        // Actualiza el estado preferencias incrementando el contador de likes en 1
+        setPreferencias((prevPreferencias) => ({ 
+            ...prevPreferencias,
+            likes: prevPreferencias.likes + 1
+        }));
+        // Llama a la función handlerLikeTotales para actualizar el contador global de likes
+        handlerLikeTotales(); 
+    }
+    // Define la función handlerDislike para manejar el evento de dar dislike
+    const handlerDislike = () => {
+        // Actualiza el estado preferencias decrementando el contador de dislikes en 1
+        setPreferencias((prevPreferencias) => ({ 
+            ...prevPreferencias,
+            dislikes: prevPreferencias.dislikes - 1
+        }));
+        // Llama a la función handlerDislikeTotales para actualizar el contador global de dislikes
+        handlerDislikeTotales(); 
+    }
+
+    // Retorna el JSX que representa la estructura visual del componente
+    return (
         <div>
+            {/* Muestra el nombre del restaurante */}
             <h1>{nombre}</h1>
+            {/* Muestra la dirección del restaurante */}
             <h3>{direccion}</h3>
+            {/* Muestra el tipo de restaurante */}
             <h4>{tipo}</h4>
+            {/* Muestra la imagen del restaurante */}
             <img src={imagen} alt={nombre}/>
+            {/* Muestra el número de likes */}
             <h4> Likes: {likes}</h4>
+            {/* Muestra el número de dislikes */}
+            <h4> Dislikes: {dislikes}</h4>
+            {/* Botón para dar like, ejecuta handlerLike al hacer clic */}
             <button onClick={handlerLike}>LIKE</button>
+            {/* Botón para dar dislike, ejecuta handlerDislike al hacer clic */}
+            <button onClick={handlerDislike}>DISLIKE</button>
+            
         </div>
     );
 }
 
+// Exporta el componente Restaurante para que pueda ser utilizado en otros archivos
 export default Restaurante; //disponible para otros archivos
-
