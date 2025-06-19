@@ -1,0 +1,52 @@
+{
+  "restaurante": [
+    {
+      "id": "2299",
+      "nombre": "Juan",
+      "direccion": "Amaguaña",
+      "tipo": "cafe",
+      "imagen": "https://imagenes.primicias.ec/files/main_image_832_468/uploads/2024/05/26/66539bf3ba20b.jpeg"
+    },
+    {
+      "id": "875f",
+      "nombre": "Pepe",
+      "direccion": "6 dic",
+      "tipo": "Tradicional",
+      "imagen": "https://imagenes.primicias.ec/files/main_image_832_468/uploads/2024/05/26/66539bf3ba20b.jpeg"
+    },
+    {
+      "id": "dff2",
+      "nombre": "Cafetería La Unión",
+      "direccion": "10 de Agosto y Orellana",
+      "tipo": "Cafeteria",
+      "imagen": "https://imagenes.primicias.ec/files/main_image_832_468/uploads/2024/05/26/66539bf3ba20b.jpeg"
+    },
+    {
+      "id": "3205",
+      "nombre": "El Buen Sabor",
+      "direccion": "Av. Amazonas y Naciones Unidas",
+      "tipo": "Internacional",
+      "imagen": "https://imagenes.primicias.ec/files/main_image_832_468/uploads/2024/05/26/66539bf3ba20b.jpeg"
+    }
+  ],
+  "clientes": [
+    {
+      "id": "1",
+      "nombre": "Juan Perez",
+      "email": "juan.perez@email.com",
+      "telefono": "0999999991"
+    },
+    {
+      "id": "2",
+      "nombre": "Maria Gomez",
+      "email": "maria.gomez@email.com",
+      "telefono": "0999999992"
+    },
+    {
+      "id": "3",
+      "nombre": "Carlos Ruiz",
+      "email": "carlos.ruiz@email.com",
+      "telefono": "0999999993"
+    }
+  ]
+}

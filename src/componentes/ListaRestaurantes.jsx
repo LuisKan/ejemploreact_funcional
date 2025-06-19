@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 
 // Componente funcional para listar restaurantes, recibe la lista de restaurantes y las funciones de like y dislike como props
-function ListaRestaurantes ({restaurantes, setRestaurantes, eliminarRestaurante}) {
+function ListaRestaurantes({ restaurantes, setRestaurantes, eliminarRestaurante }) {
 
     // Define el estado para el contador total de likes
     const [likesTotales, setLikesTotales] = useState(0);
@@ -27,7 +27,7 @@ function ListaRestaurantes ({restaurantes, setRestaurantes, eliminarRestaurante}
     };
 
     const navigate = useNavigate();
-   
+
     const handleCrearRestaurante = () => {
         // Navega a la ruta de crear un nuevo restaurante
         navigate("/nuevo");
@@ -43,19 +43,19 @@ function ListaRestaurantes ({restaurantes, setRestaurantes, eliminarRestaurante}
         // Contenedor principal de la aplicación
         <div>
 
-             <nav>
-                <Link to="/nuevo">CrearRestaurante</Link> 
+            <nav>
+                <Link to="/nuevo">CrearRestaurante</Link>
                 <br />
-                <Link to="/home">Inicio</Link> 
+                <Link to="/home">Inicio</Link>
             </nav>
 
             <button onClick={handleInicio}> GO TO INICIO </button>
             <br />
             <button onClick={handleCrearRestaurante}> GO TO CREAR RESTAURANTE </button>
 
-            {/* Itera sobre el array de restaurantes y renderiza un componente Restaurante por cada uno */}
-            {restaurantes.map((restaurante, idx) => (
-                <div key={idx} style={{ marginBottom: "20px" }}>
+
+            {restaurantes.map((restaurante) => (
+                <div key={restaurante.id} style={{ marginBottom: "20px" }}>
                     {/* Renderiza el componente Restaurante con sus props y handlers de likes/dislikes */}
                     <Restaurante
                         nombre={restaurante.nombre}
@@ -65,16 +65,17 @@ function ListaRestaurantes ({restaurantes, setRestaurantes, eliminarRestaurante}
                         handlerLikeTotales={handlerLikeTotales}
                         handlerDislikeTotales={handlerDislikeTotales}
                     />
-                    <button onClick={() => eliminarRestaurante(idx)}>
+                    <button onClick={() => eliminarRestaurante(restaurante.id)}>
                         Eliminar Restaurante
                     </button>
+                    <button onClick={() => navigate(`/editar/${restaurante.id}`)}>Editar Restaurante</button>
+
                 </div>
             ))}
             <div style={{ marginTop: "20px" }}>
                 <h3>Likes totales: {likesTotales}</h3>
             </div>
 
-            {/* Sección para agregar un nuevo restaurante */}
             <div style={{ marginTop: "30px" }}>
                 {/* Título del formulario */}
                 <h2>Agregar Nuevo Restaurante</h2>

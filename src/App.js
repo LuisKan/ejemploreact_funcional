@@ -5,45 +5,67 @@ import ListaRestaurantes from "./componentes/ListaRestaurantes";
 import Inicio from "./componentes/Inicio";
 import CrearRestaurante from "./componentes/CrearRestaurante";
 import Restaurante from "./componentes/Restaurante";
+import AxiosRestaurantes from "./componentes/AxiosRestaurantes";
+import EditarRestaurante from "./componentes/EditarRestaurante";
+
 import React, { useState } from 'react';
+import axios from "axios";
+
+
+
 
 function App() {
 
-  const [restaurantes, setRestaurantes] = useState([
-          {
-              // Objeto restaurante con propiedades nombre, direccion, tipo e imagen
-              nombre: "Cafetería La Unión",
-              direccion: "10 de Agosto y Orellana",
-              tipo: "Cafeteria",
-              imagen: "https://imagenes.primicias.ec/files/main_image_832_468/uploads/2024/05/26/66539bf3ba20b.jpeg"
-          },
-          {
-              nombre: "El Buen Sabor",
-              direccion: "Av. Amazonas y Naciones Unidas",
-              tipo: "Internacional",
-              imagen: "https://imagenes.primicias.ec/files/main_image_832_468/uploads/2024/05/26/66539bf3ba20b.jpeg"
-          },
-          {
-              nombre: "Paquita",
-              direccion: "Orellana y Colon",
-              tipo: "Grill",
-              imagen: "https://imagenes.primicias.ec/files/main_image_832_468/uploads/2024/05/26/66539bf3ba20b.jpeg"
-          },
-          {
-              nombre: "Las Vegas",
-              direccion: "Av.Shyris",
-              tipo: "Tradicional",
-              imagen: "https://imagenes.primicias.ec/files/main_image_832_468/uploads/2024/05/26/66539bf3ba20b.jpeg"
-          }
-      ]);
+  const [restaurantes, setRestaurantes] = useState([]);
+  const [error, setError] = useState(null);
+
+  const fetchRestaurantes = () => {
+    axios.get("http://localhost:3001/restaurante")
+      .then(response => {
+        setRestaurantes(response.data);
+        setError(null);
+      })
+      .catch(() => {
+        setError("Error al cargar los restaurantes");
+      });
+  };
+
+  React.useEffect(() => {
+    fetchRestaurantes();
+  }, []);
 
 
   const agregarRestaurante = (nuevoRestaurante) => {
-    setRestaurantes([...restaurantes, nuevoRestaurante]);
+    axios.post("http://localhost:3001/restaurante", nuevoRestaurante)
+      .then(response => {
+        setRestaurantes([...restaurantes, response.data]);
+        setError(null);
+      })
+      .catch(() => {
+        setError("Error al agregar el restaurante");
+      });
   };
 
-  const eliminarRestaurante = (index) => {
-    setRestaurantes(restaurantes.filter((_, i) => i !== index));
+  const eliminarRestaurante = (id) => {
+    axios.delete(`http://localhost:3001/restaurante/${id}`)
+      .then(() => {
+        setRestaurantes(restaurantes.filter(restaurante => restaurante.id !== id));
+        setError(null);
+      })
+      .catch(() => {
+        setError("Error al eliminar el restaurante");
+      });
+  };
+
+  const actualizarRestaurante = (id, actualizado) => {
+    axios.put(`http://localhost:3001/restaurante/${id}`, actualizado)
+      .then(response => {
+        setRestaurantes(restaurantes.map(restaurante => restaurante.id === id ? response.data : restaurante));
+        setError(null);
+      })
+      .catch(() => {
+        setError("Error al actualizar el restaurante");
+      });
   };
 
 
@@ -55,7 +77,9 @@ function App() {
           <Route path="/home" element={<Inicio />} />
           <Route path="/restaurantes" element={<ListaRestaurantes restaurantes={restaurantes} eliminarRestaurante={eliminarRestaurante} />} />
           <Route path="/nuevo" element={<CrearRestaurante agregarRestaurante={agregarRestaurante} />} />
-          
+          <Route path="/editar/:id" element={<EditarRestaurante actualizarRestaurante={actualizarRestaurante} />} />
+          <Route path="/axios" element={<AxiosRestaurantes />} />
+
           {/* Puedes agregar más rutas aquí si es necesario */}
           <Route path="*" element={<h2>Página no encontrada</h2>} />
         </Routes>
