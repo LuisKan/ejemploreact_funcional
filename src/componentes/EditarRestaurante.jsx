@@ -10,7 +10,7 @@ const EditarRestaurante = ({ actualizarRestaurante }) => {
     const navigate = useNavigate();
 
     // Estado local para manejar los datos del formulario
-    const [formData, setFormData] = useState({
+    const [restaurante, setrestaurante] = useState({
         nombre: "",
         direccion: "",
         tipo: "",
@@ -32,7 +32,7 @@ const EditarRestaurante = ({ actualizarRestaurante }) => {
         axios.get(`http://localhost:3001/restaurante/${id}`)
             .then((res) => {
                 // Actualiza el estado con los datos obtenidos
-                setFormData(res.data);
+                setrestaurante(res.data);
             })
             .catch(() => {
                 // Muestra alerta si ocurre un error al cargar los datos
@@ -42,14 +42,14 @@ const EditarRestaurante = ({ actualizarRestaurante }) => {
 
     // Maneja los cambios en los campos del formulario
     const handleChange = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.value});
+        setrestaurante({...restaurante, [e.target.name]: e.target.value});
     };
 
     // Maneja el envío del formulario
     const handleSubmit = (e) => {
         e.preventDefault();
         // Llama a la función para actualizar el restaurante
-        actualizarRestaurante(id, formData);
+        actualizarRestaurante(id, restaurante);
         // Redirige a la lista de restaurantes
         navigate("/restaurantes");
     };
@@ -63,13 +63,13 @@ const EditarRestaurante = ({ actualizarRestaurante }) => {
             <h2>Editar Restaurante</h2>
             <form onSubmit={handleSubmit}>
                 {/* Campo para el nombre */}
-                <input type="text" name="nombre" placeholder="Nombre" value={formData.nombre} onChange={handleChange} />
+                <input type="text" name="nombre" placeholder="Nombre" value={restaurante.nombre} onChange={handleChange} />
                 {/* Campo para la dirección */}
-                <input type="text" name="direccion" placeholder="Dirección" value={formData.direccion} onChange={handleChange} />
+                <input type="text" name="direccion" placeholder="Dirección" value={restaurante.direccion} onChange={handleChange} />
                 {/* Campo para el tipo */}
-                <input type="text" name="tipo" placeholder="Tipo" value={formData.tipo} onChange={handleChange} />
+                <input type="text" name="tipo" placeholder="Tipo" value={restaurante.tipo} onChange={handleChange} />
                 {/* Campo para la imagen */}
-                <input type="text" name="imagen" placeholder="Imagen" value={formData.imagen} onChange={handleChange} />
+                <input type="text" name="imagen" placeholder="Imagen" value={restaurante.imagen} onChange={handleChange} />
                 {/* Botón para guardar los cambios */}
                 <br />
                 <button type="submit">Guardar Cambios</button>

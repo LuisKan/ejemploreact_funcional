@@ -77,10 +77,7 @@ function ListaRestaurantes({ restaurantes, setRestaurantes, eliminarRestaurante 
             </div>
 
             <div style={{ marginTop: "30px" }}>
-                {/* Título del formulario */}
-                <h2>Agregar Nuevo Restaurante</h2>
-                {/* Renderiza el componente CrearRestaurante y pasa la función para agregar */}
-                <CrearRestaurante onCrear={agregarRestaurante} />
+                
             </div>
         </div>
     );

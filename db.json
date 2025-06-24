@@ -2,7 +2,7 @@
   "restaurante": [
     {
       "id": "2299",
-      "nombre": "Juan",
+      "nombre": "Pedro",
       "direccion": "Amaguaña",
       "tipo": "cafe",
       "imagen": "https://imagenes.primicias.ec/files/main_image_832_468/uploads/2024/05/26/66539bf3ba20b.jpeg"
@@ -23,7 +23,7 @@
     },
     {
       "id": "3205",
-      "nombre": "El Buen Sabor",
+      "nombre": "El Buen Sabor De Juan FRAN",
       "direccion": "Av. Amazonas y Naciones Unidas",
       "tipo": "Internacional",
       "imagen": "https://imagenes.primicias.ec/files/main_image_832_468/uploads/2024/05/26/66539bf3ba20b.jpeg"
