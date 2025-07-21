@@ -27,22 +27,11 @@ const Inicio = () => {
         <div className="inicio">
             <h1>Bienvenido a la App de Restaurantes</h1>
             <p>Explora los mejores restaurantes de la ciudad.</p>
-            <nav>
-                <Link to="/restaurantes">ListaRestaurante</Link> 
-                <br />
-                <Link to="/nuevo">CrearRestaurante</Link> 
-                <br />
-                <Link to="/axios">AxiosRestaurantes</Link>
-                <br />
-        
-            </nav>
 
             <button onClick={handleListaRestaurantes}>GO TO LISTA </button>
             <br />
             <button onClick={handleCrearRestaurante}>GO TO CREAR RESTAURANTE</button>
-            <br />
-            <button onClick={handleAxiosRestaurantes}>GO TO AXIOS RESTAURANTES</button> 
-            <br />
+            
             
             
         </div>

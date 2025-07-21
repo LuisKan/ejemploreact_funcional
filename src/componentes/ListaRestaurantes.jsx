@@ -42,33 +42,27 @@ function ListaRestaurantes({ restaurantes, setRestaurantes, eliminarRestaurante 
     return (
         // Contenedor principal de la aplicación
         <div>
-
-            <nav>
-                <Link to="/nuevo">CrearRestaurante</Link>
-                <br />
-                <Link to="/home">Inicio</Link>
-            </nav>
-
             <button onClick={handleInicio}> GO TO INICIO </button>
             <br />
             <button onClick={handleCrearRestaurante}> GO TO CREAR RESTAURANTE </button>
 
 
             {restaurantes.map((restaurante) => (
-                <div key={restaurante.id} style={{ marginBottom: "20px" }}>
+                <div key={restaurante._id} style={{ marginBottom: "20px" }}>
                     {/* Renderiza el componente Restaurante con sus props y handlers de likes/dislikes */}
                     <Restaurante
                         nombre={restaurante.nombre}
                         direccion={restaurante.direccion}
                         tipo={restaurante.tipo}
                         imagen={restaurante.imagen}
+                        puntuacion={restaurante.puntuacion}
                         handlerLikeTotales={handlerLikeTotales}
                         handlerDislikeTotales={handlerDislikeTotales}
                     />
-                    <button onClick={() => eliminarRestaurante(restaurante.id)}>
+                    <button onClick={() => eliminarRestaurante(restaurante._id)}>
                         Eliminar Restaurante
                     </button>
-                    <button onClick={() => navigate(`/editar/${restaurante.id}`)}>Editar Restaurante</button>
+                    <button onClick={() => navigate(`/editar/${restaurante._id}`)}>Editar Restaurante</button>
 
                 </div>
             ))}
