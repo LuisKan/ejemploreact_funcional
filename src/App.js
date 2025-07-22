@@ -122,11 +122,11 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Restaurantes</h1>
+      <h1>🍽️ Restaurantes</h1>
       <header className="App-header">
         <h1>Guía de Restaurantes</h1>
-        <div style={{marginBottom: '20px'}}>
-          <h3>Totales Globales:</h3>
+        <div className="totales-globales">
+          <h3>📊 Totales Globales:</h3>
           <p>Likes Totales: {totales.likes}</p>
           <p>Dislikes Totales: {totales.dislikes}</p>
         </div>
@@ -139,7 +139,7 @@ function App() {
             <Route path="/axios" element={<AxiosRestaurantes />} />
 
             {/* Puedes agregar más rutas aquí si es necesario */}
-            <Route path="*" element={<h2>Página no encontrada</h2>} />
+            <Route path="*" element={<h2>❌ Página no encontrada</h2>} />
           </Routes>
         </BrowserRouter>
       </header>

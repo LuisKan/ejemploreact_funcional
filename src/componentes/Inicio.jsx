@@ -2,6 +2,7 @@ import react from "react";
 import Restaurante from "./Restaurante";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "./Inicio.css";
 
 const Inicio = () => {  
 
@@ -25,15 +26,24 @@ const Inicio = () => {
 
     return (
         <div className="inicio">
-            <h1>Bienvenido a la App de Restaurantes</h1>
-            <p>Explora los mejores restaurantes de la ciudad.</p>
+            <h1>🍽️ Bienvenido a la App de Restaurantes</h1>
+            <p>
+                Explora los mejores restaurantes de la ciudad. 
+                Descubre nuevos sabores, comparte tus experiencias y 
+                encuentra tu próximo lugar favorito para comer.
+            </p>
 
-            <button onClick={handleListaRestaurantes}>GO TO LISTA </button>
-            <br />
-            <button onClick={handleCrearRestaurante}>GO TO CREAR RESTAURANTE</button>
-            
-            
-            
+            <div className="inicio-buttons">
+                <button onClick={handleListaRestaurantes} className="btn-lista">
+                    <span className="btn-icon">📋</span>
+                    Ver Lista de Restaurantes
+                </button>
+                
+                <button onClick={handleCrearRestaurante} className="btn-crear">
+                    <span className="btn-icon">➕</span>
+                    Crear Nuevo Restaurante
+                </button>
+            </div>
         </div>
     );
 }

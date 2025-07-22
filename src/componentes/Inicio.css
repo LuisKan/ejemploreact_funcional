@@ -1,0 +1,251 @@
+/* Estilos para el componente Inicio */
+
+/* Contenedor principal de Inicio */
+.inicio {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de partículas en el fondo */
+.inicio::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 10%, rgba(255,255,255,0.08) 0%, transparent 30%);
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Título principal */
+.inicio h1 {
+    color: white;
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    background: rgba(255,255,255,0.1);
+    padding: 30px 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.3);
+    position: relative;
+    z-index: 1;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+    to {
+        box-shadow: 0 0 30px rgba(255,255,255,0.4);
+    }
+}
+
+/* Párrafo descriptivo */
+.inicio p {
+    color: white;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    background: rgba(255,255,255,0.08);
+    padding: 20px 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* Contenedor de botones */
+.inicio-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilos base para botones de Inicio */
+.inicio button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    min-width: 250px;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de brillo en botones */
+.inicio button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+.inicio button:hover::before {
+    animation: shine 0.7s ease-in-out;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Botón Lista Restaurantes */
+.btn-lista {
+    background: rgba(52, 152, 219, 0.8);
+    color: white;
+}
+
+.btn-lista:hover {
+    background: rgba(41, 128, 185, 0.9);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(52, 152, 219, 0.4);
+}
+
+/* Botón Crear Restaurante */
+.btn-crear {
+    background: rgba(39, 174, 96, 0.8);
+    color: white;
+}
+
+.btn-crear:hover {
+    background: rgba(34, 153, 84, 0.9);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(39, 174, 96, 0.4);
+}
+
+/* Iconos en los botones */
+.btn-icon {
+    font-size: 1.2rem;
+    margin-right: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .inicio {
+        padding: 30px 15px;
+    }
+    
+    .inicio h1 {
+        font-size: 2.5rem;
+        padding: 20px 25px;
+    }
+    
+    .inicio p {
+        font-size: 1.2rem;
+        padding: 15px 20px;
+    }
+    
+    .inicio button {
+        min-width: 200px;
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .inicio h1 {
+        font-size: 2rem;
+        padding: 15px 20px;
+    }
+    
+    .inicio p {
+        font-size: 1rem;
+        padding: 12px 18px;
+    }
+    
+    .inicio button {
+        min-width: 180px;
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
+
+/* Animación de entrada */
+.inicio h1 {
+    animation: fadeInUp 1s ease-out;
+}
+
+.inicio p {
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.inicio button {
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -2,9 +2,95 @@ img{
     width: 400px;
     height: 200px; 
     border-radius: 10px;   
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 10px 0;
 }
 
-h1{
-    color: blue;
-    font-size: 20px;
+/* Nombre del restaurante */
+.restaurante-card h1{
+    color: #1a1a1a !important;
+    font-size: 28px !important;
+    font-weight: bold !important;
+    margin: 15px 0 !important;
+    text-align: center !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4) !important;
+}
+
+/* Dirección del restaurante */
+.restaurante-card h3{
+    color: #2c3e50 !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin: 10px 0 !important;
+    text-align: center !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3) !important;
+}
+
+/* Tipo de restaurante y otros h4 */
+.restaurante-card h4{
+    color: #34495e !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    margin: 8px 0 !important;
+    text-align: center !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2) !important;
+}
+
+/* Botones de Like y Dislike */
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+/* Contenedor de puntuación */
+.puntuacion-container {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+/* Contenedor de likes y dislikes */
+.likes-dislikes-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f1f2f6;
+    border-radius: 8px;
+}
+
+.likes-dislikes-container h4 {
+    color: #2f3542;
+    font-weight: bold;
+}
+
+/* Estilos para iconos de likes y dislikes en el componente Restaurante */
+.likes-dislikes-container h4:first-child::before {
+    content: '👍';
+    font-size: 1.2rem;
+    margin-right: 8px;
+    color: #27ae60;
+}
+
+.likes-dislikes-container h4:last-child::before {
+    content: '👎';
+    font-size: 1.2rem;
+    margin-right: 8px;
+    color: #e74c3c;
 }

@@ -57,25 +57,28 @@ function Restaurante(props){
             {/* Muestra el nombre del restaurante */}
             <h1>{nombre}</h1>            
             {/* Muestra la dirección del restaurante */}
-            <h3>{direccion}</h3>
+            <h3>📍 {direccion}</h3>
             {/* Muestra el tipo de restaurante */}
-            <h4>{tipo}</h4>
+            <h4>🍴 {tipo}</h4>
             {/* Muestra la puntuación del restaurante con estrellas */}
-            <div style={{margin: '10px 0'}}>
-                <h4>Puntuación: {puntuacion}/5</h4>
-                <div style={{fontSize: '20px'}}>{mostrarEstrellas(puntuacion)}</div>
+            <div className="puntuacion-container" style={{margin: '10px 0'}}>
+                <h4>⭐ Puntuación: {puntuacion}/5</h4>
+                <div style={{fontSize: '20px', textAlign: 'center'}}>{mostrarEstrellas(puntuacion)}</div>
             </div>
             {/* Muestra la imagen del restaurante */}
             <img src={imagen} alt={nombre}/>
-            {/* Muestra el número de likes */}
-            <h4> Likes: {likes}</h4>
-            {/* Muestra el número de dislikes */}
-            <h4> Dislikes: {dislikes}</h4>
-            {/* Botón para dar like, ejecuta handlerLike al hacer clic */}
-            <button onClick={handlerLike}>LIKE</button>
-            {/* Botón para dar dislike, ejecuta handlerDislike al hacer clic */}
-            <button onClick={handlerDislike}>DISLIKE</button>
             
+            {/* Contenedor de likes y dislikes */}
+            <div className="likes-dislikes-container">
+                <h4>👍 Likes: {likes}</h4>
+                <h4>👎 Dislikes: {dislikes}</h4>
+            </div>
+            
+            {/* Botones de acción */}
+            <div style={{textAlign: 'center', marginTop: '15px'}}>
+                <button onClick={handlerLike}>👍 LIKE</button>
+                <button onClick={handlerDislike}>👎 DISLIKE</button>
+            </div>
         </div>
     );
 }

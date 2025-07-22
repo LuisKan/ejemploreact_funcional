@@ -93,15 +93,6 @@ const EditarRestaurante = ({ actualizarRestaurante }) => {
         <div style={{padding: '20px', maxWidth: '600px', margin: '0 auto'}}>
             <h2>Editar Restaurante</h2>
 
-            <nav style={{marginBottom: '20px', padding: '10px', backgroundColor: '#f5f5f5', borderRadius: '5px'}}>
-                <Link to="/restaurantes" style={{marginRight: '15px', textDecoration: 'none', color: '#007bff'}}>
-                    📋 Lista Restaurantes
-                </Link>
-                <Link to="/home" style={{textDecoration: 'none', color: '#007bff'}}>
-                    🏠 Inicio
-                </Link>
-            </nav>
-
             <div style={{marginBottom: '20px'}}>
                 <button onClick={handleInicio} style={{marginRight: '10px', padding: '8px 16px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer'}}> 
                     🏠 IR A INICIO 

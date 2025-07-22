@@ -4,6 +4,7 @@ import CrearRestaurante from "./CrearRestaurante";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import "./ListaRestaurantes.css";
 
 // Componente funcional para listar restaurantes, recibe la lista de restaurantes y las funciones de like y dislike como props
 function ListaRestaurantes({ restaurantes, setRestaurantes, eliminarRestaurante }) {
@@ -41,37 +42,64 @@ function ListaRestaurantes({ restaurantes, setRestaurantes, eliminarRestaurante 
     // Renderiza el componente App
     return (
         // Contenedor principal de la aplicación
-        <div>
-            <button onClick={handleInicio}> GO TO INICIO </button>
-            <br />
-            <button onClick={handleCrearRestaurante}> GO TO CREAR RESTAURANTE </button>
-
-
-            {restaurantes.map((restaurante) => (
-                <div key={restaurante._id} style={{ marginBottom: "20px" }}>
-                    {/* Renderiza el componente Restaurante con sus props y handlers de likes/dislikes */}
-                    <Restaurante
-                        nombre={restaurante.nombre}
-                        direccion={restaurante.direccion}
-                        tipo={restaurante.tipo}
-                        imagen={restaurante.imagen}
-                        puntuacion={restaurante.puntuacion}
-                        handlerLikeTotales={handlerLikeTotales}
-                        handlerDislikeTotales={handlerDislikeTotales}
-                    />
-                    <button onClick={() => eliminarRestaurante(restaurante._id)}>
-                        Eliminar Restaurante
-                    </button>
-                    <button onClick={() => navigate(`/editar/${restaurante._id}`)}>Editar Restaurante</button>
-
-                </div>
-            ))}
-            <div style={{ marginTop: "20px" }}>
-                <h3>Likes totales: {likesTotales}</h3>
+        <div className="lista-restaurantes-container">
+            <h2 className="lista-restaurantes-title">🍽️ Lista de Restaurantes</h2>
+            
+            <div className="navigation-buttons">
+                <button onClick={handleInicio} className="btn btn-home">
+                    <span className="btn-icon">🏠</span>
+                    IR A INICIO
+                </button>
+                <button onClick={handleCrearRestaurante} className="btn btn-create">
+                    <span className="btn-icon">➕</span>
+                    CREAR RESTAURANTE
+                </button>
             </div>
 
-            <div style={{ marginTop: "30px" }}>
-                
+            {restaurantes.length === 0 ? (
+                <div className="no-restaurantes">
+                    <p>No hay restaurantes disponibles. ¡Crea el primero!</p>
+                </div>
+            ) : (
+                <div className="restaurantes-grid">
+                    {restaurantes.map((restaurante) => (
+                        <div key={restaurante._id} className="restaurante-card">
+                            {/* Renderiza el componente Restaurante con sus props y handlers de likes/dislikes */}
+                            <Restaurante
+                                nombre={restaurante.nombre}
+                                direccion={restaurante.direccion}
+                                tipo={restaurante.tipo}
+                                imagen={restaurante.imagen}
+                                puntuacion={restaurante.puntuacion}
+                                handlerLikeTotales={handlerLikeTotales}
+                                handlerDislikeTotales={handlerDislikeTotales}
+                            />
+                            <div className="restaurante-actions">
+                                <button 
+                                    onClick={() => eliminarRestaurante(restaurante._id)}
+                                    className="btn btn-delete"
+                                >
+                                    <span className="btn-icon">🗑️</span>
+                                    Eliminar
+                                </button>
+                                <button 
+                                    onClick={() => navigate(`/editar/${restaurante._id}`)}
+                                    className="btn btn-edit"
+                                >
+                                    <span className="btn-icon">✏️</span>
+                                    Editar
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+            
+            <div className="likes-counter">
+                <h3>
+                    💖 Likes Totales: 
+                    <span className="likes-total-number">{likesTotales}</span>
+                </h3>
             </div>
         </div>
     );
